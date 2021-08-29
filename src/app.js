@@ -25,9 +25,13 @@ app.get('/', (req, res) => {
 app.get('/whether', (req, res) => {
     const address = req.query.address;
 
-    whetherData(address, (result) => {
-        console.log(true);
-    })
+    whetherData(address, (error, { temperature, description, cityname }) => {
+        if (error) {
+            return res.send("There is a error");
+        }
+        console.log({ temperature, description, cityname });
+        res.send({ temperature, description, cityname });
+    });
 });
 
 app.get('*', (req, res) => {
