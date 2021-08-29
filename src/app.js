@@ -1,6 +1,7 @@
 //jshint esversion:6
 const express = require('express');
 const path = require('path');
+const whetherData = require('../utils/WhetherData');
 
 const app = express();
 
@@ -22,7 +23,11 @@ app.get('/', (req, res) => {
 });
 
 app.get('/whether', (req, res) => {
-    res.send("This is whether api");
+    const address = req.query.address;
+
+    whetherData(address, (result) => {
+        console.log(true);
+    })
 });
 
 app.get('*', (req, res) => {
