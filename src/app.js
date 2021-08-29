@@ -1,19 +1,17 @@
 //jshint esversion:6
 const express = require('express');
-const app = express();
-const hbs = require('hbs');
 const path = require('path');
+
+const app = express();
 
 const port = process.env.port || 3000;
 
 const publicStaticDirPath = path.join(__dirname, '../public');
-const viewPath = path.join(__dirname, '../template/partials');
+const viewPath = path.join(__dirname, '../template/views');
 const partialsPath = path.join(__dirname, '../template/partials');
 
-
-app.use('view engine', 'hbs');
-app.use('views', viewPath);
-hbs.registerPartials(partialsPath);
+app.set('view engine', 'ejs');
+app.set('views', viewPath);
 app.use(express.static(publicStaticDirPath));
 
 ///////////////////////////////////
